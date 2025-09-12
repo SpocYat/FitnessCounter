@@ -498,28 +498,6 @@
             background: #475569;
             transform: translateY(-2px);
         }
-        .set-btn {
-            background: #3b82f6; /* Changed from #10b981 to blue initially */
-            color: white;
-            font-size: 13px;
-            padding: 10px 16px;
-            margin: 2px;
-        }
-        .set-btn:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-        .set-btn:disabled {
-            background: #64748b;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .set-btn.completed {
-            background: #10b981; /* Green after completion */
-        }
-        .set-btn.completed:hover {
-            background: #059669;
-        }
 
         /* Audio Button Styles */
         .audio-btn {
@@ -550,134 +528,6 @@
         }
         .task-card.completed .audio-btn:hover {
             background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Modal Base Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 2px solid #e2e8f0;
-            position: relative;
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-close:hover {
-            background: #dc2626;
-            transform: scale(1.1);
-        }
-        .modal-close:active {
-            transform: scale(0.95);
-        }
-        .modal-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #3b82f6;
-            margin-bottom: 20px;
-            margin-top: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #1e293b;
-            font-size: 16px;
-        }
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f8fafc;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        .form-input.error {
-            border-color: #ef4444;
-            background: #fef2f2;
-        }
-        .form-input.success {
-            border-color: #10b981;
-            background: #f0fdf4;
-        }
-        .error-text {
-            color: #ef4444;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .success-text {
-            color: #10b981;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .submit-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            width: 100%;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-        .submit-btn:active {
-            transform: scale(0.95);
-        }
-        .submit-btn:disabled {
-            background: #64748b;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* Rest Timer for Running - Enhanced */
@@ -1000,10 +850,11 @@
 
     <!-- Task Page -->
     <div id="fitnessTracker" class="fitness-tracker">
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+        <!-- MediaPipe Scripts - Moved to top for better loading -->
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
 
         <button class="return-btn" onclick="returnToMain()" data-translate="back-journey">← Back to Journey</button>
         
@@ -1029,20 +880,13 @@
                 <div class="task-card" id="task1">
                     <button class="audio-btn" onclick="speakTaskContent(1)" data-translate="speak-task">🔊 Listen</button>
                     <div class="task-header">
-                        <div class="task-title" data-translate="runs-title">🏃‍♂️ 200m Runs</div>
+                        <div class="task-title" data-translate="runs-title">🏃‍♂️ 200m Run</div>
                         <div class="task-status" id="status1">○</div>
                     </div>
-                    <div class="task-info" data-translate="runs-info">3 sets • 5 sec rest between sets</div>
-                    <div class="task-description" data-translate="runs-desc">Complete 3 sets of 200-meter runs. Take 5 seconds rest between each set to maintain your energy.</div>
-                    <div class="set-tracker" id="setTracker1">
-                        <div class="set-dot" id="set1-1"></div>
-                        <div class="set-dot" id="set1-2"></div>
-                        <div class="set-dot" id="set1-3"></div>
-                    </div>
-                    <div class="task-actions" id="runActions">
-                        <button class="btn set-btn" onclick="completeRunSet(1)" data-translate="complete-set-1">Complete Set 1</button>
-                        <button class="btn set-btn" onclick="completeRunSet(2)" disabled data-translate="complete-set-2">Complete Set 2</button>
-                        <button class="btn set-btn" onclick="completeRunSet(3)" disabled data-translate="complete-set-3">Complete Set 3</button>
+                    <div class="task-info" data-translate="runs-info">Run 5 rounds of 200-meters</div>
+                    <div class="task-description" data-translate="runs-desc">Run 200 meters at your own pace. Focus on maintaining good form and breathing rhythm.</div>
+                    <div class="task-actions">
+                        <button class="btn primary-btn" onclick="markTaskComplete(1)" data-translate="mark-complete">✓ Mark Complete</button>
                     </div>
                 </div>
                 
@@ -1091,45 +935,9 @@
                     <div class="task-info" data-translate="water-info">3 liters throughout the day</div>
                     <div class="task-description" data-translate="water-desc">Stay hydrated by drinking water regularly. Aim for 3 liters spread throughout the day.</div>
                     <div class="task-actions">
-                        <button class="btn secondary-btn" onclick="markTaskComplete(4)" data-translate="mark-complete">✓ Complete</button>
+                        <button class="btn primary-btn" onclick="markTaskComplete(4)" data-translate="mark-complete">✓ Mark Complete</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- User Details Modal -->
-        <div class="modal" id="userDetailsModal">
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeUserModal()" title="Close">✕</button>
-                <div class="modal-title" data-translate="congratulations-day1">🎉 Congratulations on completing Day 1! 🎉</div>
-                <p style="margin-bottom: 25px; color: #64748b;" data-translate="share-details">Please share your details to join our fitness community:</p>
-                
-                <div class="form-group">
-                    <label class="form-label" data-translate="full-name">Full Name:</label>
-                    <input type="text" class="form-input" id="userName" placeholder="Enter your full name">
-                    <div class="error-text" id="nameError"></div>
-                    <div class="success-text" id="nameSuccess"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" data-translate="phone-number">Phone Number:</label>
-                    <input type="text" class="form-input" id="userPhone" placeholder="Enter 10-digit phone number">
-                    <div class="error-text" id="phoneError"></div>
-                    <div class="success-text" id="phoneSuccess"></div>
-                </div>
-                
-                <div class="loading-spinner" id="loadingSpinner"></div>
-                <button class="submit-btn" onclick="submitUserDetails()" id="submitBtn" data-translate="submit-join">Submit & Join Community</button>
-            </div>
-        </div>
-        
-        <!-- Enhanced Rest Timer Overlay for Running -->
-        <div class="rest-overlay" id="restOverlay">
-            <div class="rest-content">
-                <div class="rest-heading" data-translate="rest-time">REST TIME</div>
-                <div class="rest-timer-big" id="restTimerBig">5</div>
-                <div class="rest-subtext" data-translate="rest-seconds">seconds remaining</div>
-                <p data-translate="rest-next-set">Prepare for next set</p>
             </div>
         </div>
         
@@ -1274,22 +1082,22 @@
             switch(taskNumber) {
                 case 1:
                     textToSpeak = currentLanguage === 'mr' ? 
-                        'दौड़ना। तीन सेट। दो सौ मीटर दौड़ें। सेट के बीच पांच सेकंड आराम करें।' :
-                        'Running. Three sets. Run two hundred meters. Take five seconds rest between sets.';
+                        'दोन सौ मीटर धावणे. आपल्या गतीने धावा.' :
+                        'Two hundred meter run. Run at your own pace.';
                     break;
                 case 2:
                     textToSpeak = currentLanguage === 'mr' ? 
-                        'स्क्वॅट्स। दोन सेट। तीन रेप्स प्रत्येक सेट। एआय ट्रॅकिंग उपलब्ध आहे।' :
+                        'स्क्वॅट्स. दोन सेट. तीन रेप्स प्रत्येक सेट. एआय ट्रॅकिंग उपलब्ध आहे.' :
                         'Squats. Two sets. Three reps each set. AI tracking available.';
                     break;
                 case 3:
                     textToSpeak = currentLanguage === 'mr' ? 
-                        'जंपिंग जॅक्स। दोन सेट। तीन रेप्स प्रत्येक सेट। एआय ट्रॅकिंग उपलब्ध आहे।' :
+                        'जंपिंग जॅक्स. दोन सेट. तीन रेप्स प्रत्येक सेट. एआय ट्रॅकिंग उपलब्ध आहे.' :
                         'Jumping Jacks. Two sets. Three reps each set. AI tracking available.';
                     break;
                 case 4:
                     textToSpeak = currentLanguage === 'mr' ? 
-                        'पाणी सेवन। दिवसभर तीन लिटर पाणी प्या।' :
+                        'पाणी सेवन. दिवसभर तीन लिटर पाणी प्या.' :
                         'Water intake. Drink three liters of water throughout the day.';
                     break;
             }
@@ -1319,12 +1127,9 @@
                 "hello-yatin": "Hello Yatin! 👋",
                 "todays-plan": "Here's your plan for {date}",
                 "speak-task": "🔊 Listen",
-                "runs-title": "🏃‍♂️ 200m Runs",
-                "runs-info": "3 sets • 5 sec rest between sets",
-                "runs-desc": "Complete 3 sets of 200-meter runs. Take 5 seconds rest between each set to maintain your energy.",
-                "complete-set-1": "Complete Set 1",
-                "complete-set-2": "Complete Set 2",
-                "complete-set-3": "Complete Set 3",
+                "runs-title": "🏃‍♂️ 200m Run",
+                "runs-info": "Run 5 rounds of 200-meters",
+                "runs-desc": "Run 200 meters at your own pace. Focus on maintaining good form and breathing rhythm.",
                 "squats-title": "🦵 Squats",
                 "squats-info": "2 sets × 3 reps • AI tracking",
                 "squats-desc": "Perform squats with proper form. Our AI will track your movement and count reps automatically.",
@@ -1336,15 +1141,7 @@
                 "water-desc": "Stay hydrated by drinking water regularly. Aim for 3 liters spread throughout the day.",
                 "start-camera": "📹 Start",
                 "manual-complete": "Manual ✓",
-                "mark-complete": "✓ Complete",
-                "congratulations-day1": "🎉 Congratulations on completing Day 1! 🎉",
-                "share-details": "Please share your details to join our fitness community:",
-                "full-name": "Full Name:",
-                "phone-number": "Phone Number:",
-                "submit-join": "Submit & Join Community",
-                "rest-time": "REST TIME",
-                "rest-seconds": "seconds remaining",
-                "rest-next-set": "Prepare for next set",
+                "mark-complete": "✓ Mark Complete",
                 "exercise-counter": "Exercise Counter",
                 "follow-movement": "Follow the movement:",
                 "set-info": "Set 1 of 2",
@@ -1374,32 +1171,21 @@
                 "hello-yatin": "नमस्कार यतीन! 👋",
                 "todays-plan": "आजची तुमची योजना {date}",
                 "speak-task": "🔊 ऐका",
-                "runs-title": "🏃‍♂️ २००मी धावणे",
-                "runs-info": "३ सेट • सेटसमध्ये ५ सेकंद विश्रांती",
-                "runs-desc": "२००-मीटर धावण्याचे ३ सेट पूर्ण करा. तुमची उर्जा राखण्यासाठी प्रत्येक सेटमध्ये ५ सेकंद विश्रांती घ्या.",
-                "complete-set-1": "सेट १ पूर्ण करा",
-                "complete-set-2": "सेट २ पूर्ण करा",
-                "complete-set-3": "सेट ३ पूर्ण करा",
+                "runs-title": "🏃‍♂️ २०० मीटर धावणे",
+                "runs-info": "२०० मीटर चे ५ राऊंड धावा",
+                "runs-desc": "आपल्या गतीने २०० मीटर धावा. योग्य फॉर्म आणि श्वासोच्छवासावर लक्ष ठेवा.",
                 "squats-title": "🦵 स्क्वॅट्स",
                 "squats-info": "२ सेट × ३ रेप्स • AI ट्रॅकिंग",
-                "squats-desc": "योग्य पद्धतीने स्क्वॅट्स करा. आमचे AI तुमची हालचाल ट्रॅक करेल आणि रेप्स गणना करेल.",
+                "squats-desc": "योग्य पद्धतीने स्क्वॅट्स करा. आमचे AI तुमची हालचाल ट्रॅक करेल आणि रेप्स गणणा करेल.",
                 "jumping-jacks-title": "🤸‍♂️ जंपिंग जॅक्स",
                 "jumping-jacks-info": "२ सेट × ३ रेप्स • AI ट्रॅकिंग",
-                "jumping-jacks-desc": "हात आणि पाय एकत्र हलवून जंपिंग जॅक्स करा. AI तुमची हालचाल शोधेल आणि गणना करेल.",
+                "jumping-jacks-desc": "हात आणि पाय एकत्र हलवून जंपिंग जॅक्स करा. AI तुमची हालचाल शोधेल आणि गणणा करेल.",
                 "water-title": "💧 पाणी सेवन",
                 "water-info": "दिवसभर ३ लिटर",
                 "water-desc": "नियमितपणे पाणी प्यून हायड्रेटेड रहा. दिवसभर ३ लिटर पाणी प्याचे लक्ष्य ठेवा.",
                 "start-camera": "📹 सुरू करा",
                 "manual-complete": "मॅन्युअल ✓",
-                "mark-complete": "✓ पूर्ण",
-                "congratulations-day1": "🎉 दिवस १ पूर्ण केल्याबद्दल अभिनंदन! 🎉",
-                "share-details": "कृपया आमच्या फिटनेस समुदायात सामील होण्यासाठी तुमचे तपशील शेअर करा:",
-                "full-name": "पूर्ण नाव:",
-                "phone-number": "फोन नंबर:",
-                "submit-join": "सबमिट करा आणि समुदायात सामील व्हा",
-                "rest-time": "विश्रांतीचा वेळ",
-                "rest-seconds": "सेकंद शिल्लक",
-                "rest-next-set": "पुढच्या सेटसाठी तयार व्हा",
+                "mark-complete": "✓ पूर्ण करा",
                 "exercise-counter": "व्यायाम काउंटर",
                 "follow-movement": "हालचाल फॉलो करा:",
                 "set-info": "सेट १ पैकी २",
@@ -1432,12 +1218,7 @@
         let tasksCompleted = [false, false, false, false];
         let isResting = false, restTimer = null;
         
-        // Running task variables
-        let runSetsCompleted = [false, false, false];
         let exerciseSets = { 2: [false, false], 3: [false, false] }; // Track sets for squats and jumping jacks
-        
-        // Updated Google Sheets configuration - Fixed deployment URL
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxTGzQqoQjvZEqoKFzGMxGQywjxJg--ot7-R5aKHmhWJCYJ52fkY8cFgkklmI8esDHc/exec';
         
         // Add click sound to all interactive elements
         document.addEventListener('click', function(e) {
@@ -1591,8 +1372,6 @@
             const dayData = progressData[day] || { completed: false, progress: 0, tasksCompleted: [false, false, false, false] };
             tasksCompleted = dayData.tasksCompleted || [false, false, false, false];
             
-            // Reset running sets for the day
-            runSetsCompleted = dayData.runSetsCompleted || [false, false, false];
             exerciseSets = dayData.exerciseSets || { 2: [false, false], 3: [false, false] };
             
             document.getElementById('progressPage').style.display = 'none';
@@ -1607,7 +1386,6 @@
             document.getElementById('planText').textContent = planText;
             
             updateFitnessUI();
-            updateRunButtons();
         }
         
         function updateFitnessUI() {
@@ -1632,8 +1410,7 @@
                 }
             });
             
-            // Update set trackers
-            updateSetTracker(1, runSetsCompleted);
+            // Update set trackers for exercises with sets
             updateSetTracker(2, exerciseSets[2]);
             updateSetTracker(3, exerciseSets[3]);
         }
@@ -1648,63 +1425,6 @@
                     }
                 }
             });
-        }
-        
-        function updateRunButtons() {
-            const buttons = document.querySelectorAll('#runActions .set-btn');
-            buttons.forEach((btn, index) => {
-                btn.disabled = index > 0 && !runSetsCompleted[index - 1];
-                
-                if (runSetsCompleted[index]) {
-                    btn.classList.add('completed');
-                    btn.textContent = currentLanguage === 'mr' ? `सेट ${index + 1} ✓` : `Set ${index + 1} ✓`;
-                } else {
-                    btn.classList.remove('completed');
-                    // Keep original text for incomplete sets
-                    const originalTexts = {
-                        0: currentLanguage === 'mr' ? 'सेट १ पूर्ण करा' : 'Complete Set 1',
-                        1: currentLanguage === 'mr' ? 'सेट २ पूर्ण करा' : 'Complete Set 2',
-                        2: currentLanguage === 'mr' ? 'सेट ३ पूर्ण करा' : 'Complete Set 3'
-                    };
-                    btn.textContent = originalTexts[index];
-                }
-            });
-        }
-        
-        function completeRunSet(setNumber) {
-            triggerHapticFeedback('success');
-            playAudioFeedback('success');
-            
-            runSetsCompleted[setNumber - 1] = true;
-            updateSetTracker(1, runSetsCompleted);
-            updateRunButtons();
-            
-            // Check if all running sets completed
-            if (runSetsCompleted.every(set => set)) {
-                markTaskComplete(1);
-            } else {
-                // Show rest timer
-                startRunRestTimer();
-            }
-        }
-        
-        function startRunRestTimer() {
-            let restTime = 5;
-            document.getElementById('restOverlay').style.display = 'flex';
-            document.getElementById('restTimerBig').textContent = restTime;
-            
-            const timer = setInterval(() => {
-                restTime--;
-                document.getElementById('restTimerBig').textContent = restTime;
-                
-                if (restTime <= 0) {
-                    clearInterval(timer);
-                    document.getElementById('restOverlay').style.display = 'none';
-                    // Play whistle sound when rest time ends
-                    playAudioFeedback('whistle');
-                    triggerHapticFeedback('medium');
-                }
-            }, 1000);
         }
         
         function markTaskComplete(taskNumber) {
@@ -1723,132 +1443,12 @@
         }
         
         function checkAllTasksComplete() {
-            if (tasksCompleted.every(task => task) && selectedDay === 1) {
-                // Show user details modal for Day 1 completion
+            if (tasksCompleted.every(task => task)) {
+                // Show congratulations message after a brief delay
                 setTimeout(() => {
-                    document.getElementById('userDetailsModal').style.display = 'flex';
-                }, 1500);
-            } else if (tasksCompleted.every(task => task)) {
-                setTimeout(() => document.getElementById('congratulations').style.display = 'flex', 1000);
+                    document.getElementById('congratulations').style.display = 'flex';
+                }, 1000);
             }
-        }
-        
-        function validateName(name) {
-            return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 2;
-        }
-        
-        function validatePhone(phone) {
-            return /^\d{10}$/.test(phone);
-        }
-        
-        async function submitUserDetails() {
-            triggerHapticFeedback('light');
-            playAudioFeedback('click');
-            
-            const name = document.getElementById('userName').value.trim();
-            const phone = document.getElementById('userPhone').value.trim();
-            const submitBtn = document.getElementById('submitBtn');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            
-            let isValid = true;
-            
-            // Reset previous states
-            document.getElementById('userName').classList.remove('error', 'success');
-            document.getElementById('userPhone').classList.remove('error', 'success');
-            document.getElementById('nameError').textContent = '';
-            document.getElementById('phoneError').textContent = '';
-            document.getElementById('nameSuccess').textContent = '';
-            document.getElementById('phoneSuccess').textContent = '';
-            
-            // Validate name
-            if (!validateName(name)) {
-                document.getElementById('userName').classList.add('error');
-                document.getElementById('nameError').textContent = currentLanguage === 'mr' ? 
-                    'कृपया वैध नाव टाका (फक्त अक्षरे)' : 'Please enter a valid name (letters only)';
-                triggerHapticFeedback('medium');
-                playAudioFeedback('error');
-                isValid = false;
-            } else {
-                document.getElementById('userName').classList.add('success');
-                document.getElementById('nameSuccess').textContent = currentLanguage === 'mr' ? 'वैध नाव!' : 'Valid name!';
-            }
-            
-            // Validate phone
-            if (!validatePhone(phone)) {
-                document.getElementById('userPhone').classList.add('error');
-                document.getElementById('phoneError').textContent = currentLanguage === 'mr' ? 
-                    'कृपया १० अंकी फोन नंबर टाका' : 'Please enter a valid 10-digit phone number';
-                triggerHapticFeedback('medium');
-                playAudioFeedback('error');
-                isValid = false;
-            } else {
-                document.getElementById('userPhone').classList.add('success');
-                document.getElementById('phoneSuccess').textContent = currentLanguage === 'mr' ? 'वैध फोन नंबर!' : 'Valid phone number!';
-            }
-            
-            if (isValid) {
-                // Show loading state
-                submitBtn.disabled = true;
-                submitBtn.textContent = currentLanguage === 'mr' ? 'सबमिट करत आहे...' : 'Submitting...';
-                loadingSpinner.style.display = 'block';
-                
-                try {
-                    // Create form data properly for Google Apps Script
-                    const formData = new FormData();
-                    formData.append('name', name);
-                    formData.append('phone', phone);
-                    formData.append('completedDate', new Date().toLocaleDateString());
-                    formData.append('day', selectedDay);
-                    formData.append('language', currentLanguage);
-                    
-                    const response = await fetch(GOOGLE_SHEETS_URL, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    const result = await response.text();
-                    
-                    if (response.ok && result.includes('success')) {
-                        triggerHapticFeedback('success');
-                        playAudioFeedback('success');
-                        
-                        // Success state
-                        submitBtn.textContent = currentLanguage === 'mr' ? 'यशस्वीरित्या सबमिट झाले!' : 'Successfully submitted!';
-                        submitBtn.style.background = '#10b981';
-                        
-                        setTimeout(() => {
-                            closeUserModal();
-                            setTimeout(() => document.getElementById('congratulations').style.display = 'flex', 500);
-                        }, 2000);
-                    } else {
-                        throw new Error('Submission failed: ' + result);
-                    }
-                } catch (error) {
-                    console.error('Error submitting to Google Sheets:', error);
-                    
-                    // Error state
-                    triggerHapticFeedback('heavy');
-                    playAudioFeedback('error');
-                    submitBtn.textContent = currentLanguage === 'mr' ? 'त्रुटी! पुन्हा प्रयत्न करा' : 'Error! Try again';
-                    submitBtn.style.background = '#ef4444';
-                    
-                    // Reset after 3 seconds
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = currentLanguage === 'mr' ? 'सबमिट करा आणि समुदायात सामील व्हा' : 'Submit & Join Community';
-                        submitBtn.style.background = '';
-                        loadingSpinner.style.display = 'none';
-                    }, 3000);
-                }
-                
-                loadingSpinner.style.display = 'none';
-            }
-        }
-        
-        function closeUserModal() {
-            triggerHapticFeedback('light');
-            playAudioFeedback('click');
-            document.getElementById('userDetailsModal').style.display = 'none';
         }
         
         function returnToMain() {
@@ -1864,10 +1464,10 @@
                 progress: progress,
                 activitiesCompleted: completedCount,
                 tasksCompleted: tasksCompleted,
-                runSetsCompleted: runSetsCompleted,
                 exerciseSets: exerciseSets
             };
             
+            // If current day is completed, unlock next day
             if (isCompleted && selectedDay === currentDay) {
                 currentDay++;
             }
@@ -1875,7 +1475,6 @@
             document.getElementById('fitnessTracker').style.display = 'none';
             document.getElementById('progressPage').style.display = 'block';
             document.getElementById('congratulations').style.display = 'none';
-            document.getElementById('userDetailsModal').style.display = 'none';
             
             if (camera) {
                 camera.stop();
@@ -1938,12 +1537,29 @@
         }
         
         function startCamera() {
-            if (typeof Pose === 'undefined') {
-                const loadingText = currentLanguage === 'mr' ? 'AI मॉडेल लोड करत आहे...' : 'Loading AI model...';
-                document.getElementById('exerciseStatus').textContent = loadingText;
-                setTimeout(startCamera, 1000);
-                return;
-            }
+            // Wait for MediaPipe libraries to load with improved error handling
+            let checkInterval = setInterval(() => {
+                if (typeof Pose !== 'undefined' && typeof Camera !== 'undefined') {
+                    clearInterval(checkInterval);
+                    initializeCamera();
+                }
+            }, 100);
+            
+            // Timeout after 10 seconds if libraries don't load
+            setTimeout(() => {
+                if (typeof Pose === 'undefined' || typeof Camera === 'undefined') {
+                    clearInterval(checkInterval);
+                    const errorText = currentLanguage === 'mr' ? 
+                        'AI मॉडेल लोड होऊ शकले नाही. कृपया मॅन्युअल पूर्ण करा.' : 
+                        'AI model failed to load. Please use manual completion.';
+                    document.getElementById('exerciseStatus').textContent = errorText;
+                }
+            }, 10000);
+        }
+        
+        function initializeCamera() {
+            const loadingText = currentLanguage === 'mr' ? 'AI मॉडेल लोड करत आहे...' : 'Loading AI model...';
+            document.getElementById('exerciseStatus').textContent = loadingText;
 
             pose = new Pose({
                 locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`
@@ -1960,26 +1576,27 @@
             pose.onResults(onResults);
             
             const videoElement = document.getElementById('videoElement');
-            if (typeof Camera !== 'undefined') {
-                camera = new Camera(videoElement, {
-                    onFrame: async () => { 
-                        if (pose && !isResting) await pose.send({image: videoElement}); 
-                    },
-                    width: 640,
-                    height: 480
+            camera = new Camera(videoElement, {
+                onFrame: async () => { 
+                    if (pose && !isResting) await pose.send({image: videoElement}); 
+                },
+                width: 640,
+                height: 480
+            });
+            
+            camera.start()
+                .then(() => {
+                    const startedText = currentLanguage === 'mr' ? 
+                        'कॅमेरा सुरू झाला! व्यायाम सुरू करा! 💪' : 
+                        'Camera started! Begin exercising! 💪';
+                    document.getElementById('exerciseStatus').textContent = startedText;
+                })
+                .catch(() => {
+                    const unavailableText = currentLanguage === 'mr' ? 
+                        'कॅमेरा उपलब्ध नाही. कृपया मॅन्युअल पूर्ण करा.' : 
+                        'Camera unavailable. Please try manual completion.';
+                    document.getElementById('exerciseStatus').textContent = unavailableText;
                 });
-                
-                camera.start();
-                const startedText = currentLanguage === 'mr' ? 
-                    'कॅमेरा सुरू झाला! व्यायाम सुरू करा! 💪' : 
-                    'Camera started! Begin exercising! 💪';
-                document.getElementById('exerciseStatus').textContent = startedText;
-            } else {
-                const unavailableText = currentLanguage === 'mr' ? 
-                    'कॅमेरा उपलब्ध नाही. कृपया मॅन्युअल पूर्ण करा.' : 
-                    'Camera unavailable. Please try manual completion.';
-                document.getElementById('exerciseStatus').textContent = unavailableText;
-            }
         }
         
         function startRestTimer() {
